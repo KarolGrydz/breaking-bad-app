@@ -5,12 +5,10 @@ import { CharList } from './components/CharList';
 
 function App() {
   return (
-    <div>
-      <Container style={{ textAlign: 'center' }} maxWidth='md'>
-        <AppHeader />
-        <CharList />
-      </Container>
-    </div>
+    <Container style={{ textAlign: 'center' }} maxWidth="md">
+      <AppHeader />
+      <CharList />
+    </Container>
   );
 }
 

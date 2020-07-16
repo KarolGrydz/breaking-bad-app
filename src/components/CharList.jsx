@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCharactersId } from '../helpers/bbApi';
 import { SingleChar } from './SingleChar';
+import { Container, Grid } from '@material-ui/core';
 
 export const CharList = () => {
   const [charListIds, updateCharListIds] = useState([]);
@@ -13,11 +14,22 @@ export const CharList = () => {
     })();
   }, []);
   return (
-    <div>
+    <Container>
       <h1>Here will be list</h1>
-      {charListIds.map((id) => (
-        <SingleChar id={id} key={id} />
-      ))}
-    </div>
+      <Grid
+        item
+        container
+        justify="center"
+        alignItems="center"
+        md={12}
+        spacing={3}
+      >
+        {charListIds.map((id) => (
+          <Grid item md={3} sm={6} xs={12} key={id}>
+            <SingleChar id={id} key={id} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
