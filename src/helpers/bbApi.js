@@ -29,3 +29,14 @@ export const oneCharacter = async (id) => {
     console.error(error);
   }
 };
+
+export const deathCountByCharacter = async (name) => {
+  try {
+    const result = await axios
+      .get(`${baseUrl}${deathCounts}${name}`)
+      .then(({ data }) => data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};

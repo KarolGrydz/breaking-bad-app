@@ -15,8 +15,7 @@ export const CharList = () => {
   }, []);
   return (
     <Container>
-      <h1>Here will be list</h1>
-      <Grid item container justify="center" alignItems="center" spacing={3}>
+      <Grid item container justify='center' alignItems='center' spacing={3}>
         {charListIds.map((id) => (
           <Grid item md={3} sm={6} xs={12} key={id}>
             <SingleChar id={id} key={id} />

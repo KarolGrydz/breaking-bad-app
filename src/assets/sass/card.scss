@@ -37,12 +37,29 @@
   -webkit-backface-visibility: hidden;
 }
 
-.card-front {
-}
-
 .card-back {
   transform: rotateY(180deg);
   h6 {
     margin: 15px 0;
+  }
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .item {
+    background-color: #003300;
+  }
+
+  img {
+    height: 60vh;
+    width: auto;
   }
 }
