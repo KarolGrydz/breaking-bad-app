@@ -5,24 +5,13 @@ const breakingBadCharUrl = `characters?category=Breaking+Bad`;
 const betterCallSaulCharUrl = `characters?category=Better+Call+Saul`;
 const byName = `?name=`;
 const episodes = `episodes`;
-const qoutes = `quotes/`;
+const qoutes = `quote?author=`;
 const deathCounts = `death-count?name=`;
 
-export const getCharactersId = async () => {
+export const getCharacters = async () => {
   try {
     const result = await axios
       .get(baseUrl + charactersUrl)
-      .then(({ data }) => data.map((char) => char.char_id));
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const oneCharacter = async (id) => {
-  try {
-    const result = await axios
-      .get(`${baseUrl}${charactersUrl}${id}`)
       .then(({ data }) => data);
     return result;
   } catch (error) {
@@ -34,6 +23,17 @@ export const deathCountByCharacter = async (name) => {
   try {
     const result = await axios
       .get(`${baseUrl}${deathCounts}${name}`)
+      .then(({ data }) => data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const qoutesByCharacter = async (name) => {
+  try {
+    const result = await axios
+      .get(`${baseUrl}${qoutes}${name}`)
       .then(({ data }) => data);
     return result;
   } catch (error) {

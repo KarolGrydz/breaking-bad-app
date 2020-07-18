@@ -52,14 +52,34 @@
   .items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    &:first-child {
+      text-align: center;
+    }
+
+    li {
+      font-style: italic;
+      font-size: 11px;
+      padding: 4px 0;
+    }
   }
 
   .item {
     background-color: #003300;
+    width: 25vw;
+    font-size: 13px;
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      padding-left: 6px;
+    }
   }
 
   img {
-    height: 60vh;
+    height: 80vh;
     width: auto;
   }
 }
