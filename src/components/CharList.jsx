@@ -4,6 +4,8 @@ import { SingleChar } from './SingleChar';
 import { Container, Grid } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 
+import '../assets/sass/pagination.scss';
+
 export const CharList = () => {
   const [charList, updateCharList] = useState([]);
   const [sites, updateSite] = useState(1);
@@ -33,7 +35,7 @@ export const CharList = () => {
 
   return (
     <Container>
-      <Grid item container justify="center" alignItems="center" spacing={3}>
+      <Grid item container justify='center' alignItems='center' spacing={3}>
         {itemsOnPage.map((char) => (
           <Grid item md={3} sm={6} xs={12} key={char.char_id}>
             <SingleChar
@@ -51,8 +53,9 @@ export const CharList = () => {
         ))}
         <Pagination
           count={sites}
-          color="secondary"
           onChange={paginationMoves}
+          variant='outlined'
+          className='pagination'
         />
       </Grid>
     </Container>
