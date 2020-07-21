@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getCharacters } from '../helpers/bbApi';
 import { SingleChar } from './SingleChar';
 import { Container, Grid } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
+import { StateContext } from '../context/StateContext';
 
 import '../assets/sass/pagination.scss';
 
@@ -12,6 +13,8 @@ export const CharList = () => {
   const [currentPage, updateCurrentPage] = useState(1);
   const [itemPerPage] = useState(8);
   const [itemsOnPage, updateItemsOnPage] = useState([]);
+  const state = useContext(StateContext);
+  const { name } = state;
   useEffect(() => {
     (async function () {
       if (true) {
@@ -19,6 +22,7 @@ export const CharList = () => {
         updateCharList(charList);
         updateSite(Math.ceil(charList.length / itemPerPage));
         updateItemsOnPage(charList.slice(0, itemPerPage));
+        console.log(name);
       }
     })();
   }, []);
@@ -35,27 +39,17 @@ export const CharList = () => {
 
   return (
     <Container>
-      <Grid item container justify='center' alignItems='center' spacing={3}>
+      <Grid item container justify="center" alignItems="center" spacing={3}>
         {itemsOnPage.map((char) => (
           <Grid item md={3} sm={6} xs={12} key={char.char_id}>
-            <SingleChar
-              key={char.char_id}
-              name={char.name}
-              nickname={char.nickname}
-              birthday={char.birthday}
-              img={char.img}
-              status={char.status}
-              appearance={char.appearance}
-              better_call_saul_appearance={char.better_call_saul_appearance}
-              occupation={char.occupation}
-            />
+            <SingleChar key={char.char_id} {...char} />
           </Grid>
         ))}
         <Pagination
           count={sites}
           onChange={paginationMoves}
-          variant='outlined'
-          className='pagination'
+          variant="outlined"
+          className="pagination"
         />
       </Grid>
     </Container>
