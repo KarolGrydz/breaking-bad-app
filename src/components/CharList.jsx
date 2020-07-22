@@ -3,7 +3,7 @@ import { getCharacters } from '../helpers/bbApi';
 import { SingleChar } from './SingleChar';
 import { Container, Grid } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
-import { StateContext } from '../context/StateContext';
+import { StateContext, DispatchContext } from '../context/StateContext';
 
 import '../assets/sass/pagination.scss';
 
@@ -14,6 +14,7 @@ export const CharList = () => {
   const [itemPerPage] = useState(8);
   const [itemsOnPage, updateItemsOnPage] = useState([]);
   const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
   const { name } = state;
   useEffect(() => {
     (async function () {
@@ -23,6 +24,8 @@ export const CharList = () => {
         updateSite(Math.ceil(charList.length / itemPerPage));
         updateItemsOnPage(charList.slice(0, itemPerPage));
         console.log(name);
+        dispatch({ type: 'changeName', payload: 'lukasz' });
+        dispatch({ type: 'changeAge', payload: 18 });
       }
     })();
   }, []);
