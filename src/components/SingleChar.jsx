@@ -17,15 +17,21 @@ export const SingleChar = ({
   const [quotes, updateQuotes] = useState([]);
   const [open, setOpen] = useState(false);
   useEffect(() => {
+    let isCanceled = false;
     (async function () {
       if (true) {
         const strName = name.replace(' ', '+');
         const deathCounts = await deathCountByCharacter(strName);
         const bestQoutes = await qoutesByCharacter(strName);
-        updateDeath(deathCounts[0].deathCount);
-        updateQuotes(bestQoutes.slice(0, 9));
+        if (isCanceled) {
+          updateDeath(deathCounts[0].deathCount);
+          updateQuotes(bestQoutes.slice(0, 9));
+        }
       }
     })();
+    return () => {
+      isCanceled = true;
+    };
   }, []);
 
   const handleOpen = () => {

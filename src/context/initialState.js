@@ -1,4 +1,6 @@
 export const initialState = {
-  name: 'karol',
-  age: 30,
+  allItems: [],
+  ITEM_PER_PAGE: 8,
+  paginationSites: 1,
+  itemOnPage: [],
 };
