@@ -15,7 +15,7 @@ export const ItemModal = ({
   return (
     <div className='items'>
       <div className='item'>
-        <img src={img} alt='character picture' />
+        <img src={img} alt='face' />
       </div>
       <div className='item'>
         <h2>{nickname}</h2>
@@ -41,14 +41,10 @@ export const ItemModal = ({
         </p>
         <p>
           <b>Better Call Saul Season: </b>
-          {better_call_saul_appearance ? (
-            better_call_saul_appearance.length != 0 ? (
-              better_call_saul_appearance.map((item) => (
-                <a key={item}> {item},</a>
-              ))
-            ) : (
-              <a>Not appear</a>
-            )
+          {better_call_saul_appearance.length != 0 ? (
+            better_call_saul_appearance.map((item) => (
+              <a key={item}> {item},</a>
+            ))
           ) : (
             <a>Not appear</a>
           )}

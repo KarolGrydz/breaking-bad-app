@@ -9,7 +9,6 @@ ReactDOM.render(
     <ContextControler>
       <App />
     </ContextControler>
-    ,
   </React.StrictMode>,
   document.getElementById('root')
 );

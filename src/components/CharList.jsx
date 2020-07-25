@@ -10,17 +10,16 @@ import '../assets/sass/spinner.scss';
 export const CharList = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
-  const { itemOnPage } = state;
+  const { itemOnPage, allItems } = state;
   useEffect(() => {
     (async function () {
-      if (true) {
-        const charList = await getCharacters();
-        dispatch({ type: 'updateCharList', payload: charList });
-        dispatch({ type: 'updatePaginationSites', payload: charList });
-        dispatch({ type: 'updateItemsOnPage', payload: 1 });
-      }
+      if (allItems.length) return;
+      const charList = await getCharacters();
+      dispatch({ type: 'updateCharList', payload: charList });
+      dispatch({ type: 'updatePaginationSites', payload: charList });
+      dispatch({ type: 'updateItemsOnPage', payload: 1 });
     })();
-  }, [dispatch]);
+  }, [allItems.length, dispatch]);
 
   return (
     <>
@@ -29,8 +28,8 @@ export const CharList = () => {
         container
         spacing={3}
         className={itemOnPage.length ? `list-items-ok` : `list-items`}
-        justify="center"
-        alignItems="center"
+        justify='center'
+        alignItems='center'
       >
         {itemOnPage.map((char) => (
           <Grid item md={3} sm={6} xs={12} key={char.char_id}>
@@ -42,7 +41,7 @@ export const CharList = () => {
         <img
           className={itemOnPage.length ? `spinner` : `spinner-ok`}
           src={Spinner}
-          alt="Spinner"
+          alt='Spinner'
         />
       </Grid>
     </>

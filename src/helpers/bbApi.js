@@ -1,10 +1,10 @@
 import axios from 'axios';
 const baseUrl = 'https://www.breakingbadapi.com/api/';
 const charactersUrl = `characters/`;
-const breakingBadCharUrl = `characters?category=Breaking+Bad`;
-const betterCallSaulCharUrl = `characters?category=Better+Call+Saul`;
+// const breakingBadCharUrl = `characters?category=Breaking+Bad`;
+// const betterCallSaulCharUrl = `characters?category=Better+Call+Saul`;
 const byName = `?name=`;
-const episodes = `episodes`;
+// const episodes = `episodes`;
 const qoutes = `quote?author=`;
 const deathCounts = `death-count?name=`;
 
@@ -34,6 +34,17 @@ export const qoutesByCharacter = async (name) => {
   try {
     const result = await axios
       .get(`${baseUrl}${qoutes}${name}`)
+      .then(({ data }) => data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getCharacterByName = async (name) => {
+  try {
+    const result = await axios
+      .get(`${baseUrl}${charactersUrl}${byName}${name}`)
       .then(({ data }) => data);
     return result;
   } catch (error) {

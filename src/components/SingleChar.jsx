@@ -8,31 +8,21 @@ export const SingleChar = (props) => {
   const [death, updateDeath] = useState([]);
   const [quotes, updateQuotes] = useState([]);
   const [open, setOpen] = useState(false);
-  const {
-    name,
-    nickname,
-    occupation,
-    better_call_saul_appearance,
-    appearance,
-    status,
-    birthday,
-    img,
-  } = props;
+
   useEffect(() => {
     let isCanceled = false;
     (async function () {
-      if (true) {
-        const strName = props.name.replace(' ', '+');
-        const deathCounts = await deathCountByCharacter(strName);
-        const bestQoutes = await qoutesByCharacter(strName);
-        if (!isCanceled) updateDeath(deathCounts[0].deathCount);
-        if (!isCanceled) updateQuotes(bestQoutes.slice(0, 9));
-      }
+      if (!props.name.length) return;
+      const strName = props.name.replace(' ', '+');
+      const deathCounts = await deathCountByCharacter(strName);
+      const bestQoutes = await qoutesByCharacter(strName);
+      if (!isCanceled) updateDeath(deathCounts[0].deathCount);
+      if (!isCanceled) updateQuotes(bestQoutes.slice(0, 9));
     })();
     return () => {
       isCanceled = true;
     };
-  }, []);
+  }, [props.name]);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -42,7 +32,7 @@ export const SingleChar = (props) => {
     <div className='card'>
       <div className='card-inner' onClick={handleOpen}>
         <div className='card-front'>
-          <img src={props.img} alt='character picture' />
+          <img src={props.img} alt='face' />
         </div>
         <div className='card-back'>
           <Typography variant='subtitle1'>
@@ -69,7 +59,9 @@ export const SingleChar = (props) => {
         aria-describedby='simple-modal-description'
         className='modal'
       >
-        <ItemModal {...props} death={death} quotes={quotes} />
+        <div>
+          <ItemModal {...props} death={death} quotes={quotes} />
+        </div>
       </Modal>
     </div>
   );
