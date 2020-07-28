@@ -12,16 +12,17 @@ export const InputSearch = () => {
     const char = await getCharacterByName(e.target.value);
     dispatch({ type: 'updateCharList', payload: char });
     dispatch({ type: 'updateItemsOnPage', payload: 1 });
+    dispatch({ type: 'updatePaginationSites', payload: char });
   };
 
   return (
     <div>
-      <form noValidate autoComplete='off'>
+      <form noValidate autoComplete="off">
         <Input
-          placeholder='Search for character'
+          placeholder="Search for character"
           inputProps={{ 'aria-label': 'character search' }}
-          variant='filled'
-          className='search-bar'
+          variant="filled"
+          className="search-bar"
           onChange={onChange}
         />
       </form>
