@@ -5,8 +5,6 @@ import { Grid } from '@material-ui/core';
 import { StateContext, DispatchContext } from '../context/StateContext';
 import Spinner from '../assets/img/spinner.gif';
 
-import '../assets/sass/spinner.scss';
-
 export const CharList = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
@@ -28,8 +26,8 @@ export const CharList = () => {
         container
         spacing={3}
         className={itemOnPage.length ? `list-items-ok` : `list-items`}
-        justify='center'
-        alignItems='center'
+        justify="center"
+        alignItems="center"
       >
         {itemOnPage.map((char) => (
           <Grid item md={3} sm={6} xs={12} key={char.char_id}>
@@ -41,7 +39,7 @@ export const CharList = () => {
         <img
           className={itemOnPage.length ? `spinner` : `spinner-ok`}
           src={Spinner}
-          alt='Spinner'
+          alt="Spinner"
         />
       </Grid>
     </>

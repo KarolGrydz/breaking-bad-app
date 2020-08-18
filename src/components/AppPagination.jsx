@@ -3,8 +3,6 @@ import { StateContext, DispatchContext } from '../context/StateContext';
 import Pagination from '@material-ui/lab/Pagination';
 import { Grid } from '@material-ui/core';
 
-import '../assets/sass/pagination.scss';
-
 export const AppPagination = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);

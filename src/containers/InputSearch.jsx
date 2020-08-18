@@ -3,8 +3,6 @@ import Input from '@material-ui/core/Input';
 import { DispatchContext } from '../context/StateContext';
 import { getCharacterByName } from '../helpers/bbApi';
 
-import '../assets/sass/input.scss';
-
 export const InputSearch = () => {
   const dispatch = useContext(DispatchContext);
 

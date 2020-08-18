@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../assets/sass/card.scss';
 import { deathCountByCharacter, qoutesByCharacter } from '../helpers/bbApi';
 import { Typography, Modal } from '@material-ui/core';
 import { ItemModal } from './ItemModal';
@@ -29,25 +28,25 @@ export const SingleChar = (props) => {
   };
 
   return (
-    <div className='card'>
-      <div className='card-inner' onClick={handleOpen}>
-        <div className='card-front'>
-          <img src={props.img} alt='face' />
+    <div className="card">
+      <div className="card-inner" onClick={handleOpen}>
+        <div className="card-front">
+          <img src={props.img} alt="face" />
         </div>
-        <div className='card-back'>
-          <Typography variant='subtitle1'>
+        <div className="card-back">
+          <Typography variant="subtitle1">
             <b>Name:</b> {props.name}
           </Typography>{' '}
-          <Typography variant='subtitle1'>
+          <Typography variant="subtitle1">
             <b>Nickname:</b> {props.nickname}
           </Typography>{' '}
-          <Typography variant='subtitle1'>
+          <Typography variant="subtitle1">
             <b>Birthday:</b> {props.birthday}
           </Typography>{' '}
-          <Typography variant='subtitle1'>
+          <Typography variant="subtitle1">
             <b>Alive:</b> {props.status}
           </Typography>{' '}
-          <Typography variant='subtitle1'>
+          <Typography variant="subtitle1">
             <i>Click for more informations</i>
           </Typography>{' '}
         </div>
@@ -55,9 +54,9 @@ export const SingleChar = (props) => {
       <Modal
         open={open}
         onClose={handleOpen}
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
-        className='modal'
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className="modal"
       >
         <div>
           <ItemModal {...props} death={death} quotes={quotes} />
