@@ -29,7 +29,11 @@ export const SingleChar = (props) => {
 
   return (
     <div className="card">
-      <div className="card-inner" onClick={handleOpen}>
+      <div
+        className="card-inner"
+        onClick={handleOpen}
+        data-testid={props.name + `-card`}
+      >
         <div className="card-front">
           <img src={props.img} alt="face" />
         </div>

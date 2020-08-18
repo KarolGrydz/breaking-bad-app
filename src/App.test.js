@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import App from './App';
+import { SingleChar } from './components/SingleChar';
 import userEvent from '@testing-library/user-event';
 import { ContextControler } from './context/StateContext';
 
@@ -35,8 +36,9 @@ describe('After fetch data', () => {
     expect(faceImg).toHaveLength(2);
   });
   test('should be modal on click', async () => {
-    const faceImg = await screen.findAllByText(/Jesse Pinkman/i);
+    const faceImg = await screen.findByTestId('Jesse Pinkman-card');
+
     // userEvent.click(faceImg);
-    screen.getByRole('');
+    screen.debug(faceImg);
   });
 });
