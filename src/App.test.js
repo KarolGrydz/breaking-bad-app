@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import App from './App';
-import { SingleChar } from './components/SingleChar';
 import userEvent from '@testing-library/user-event';
 import { ContextControler } from './context/StateContext';
 
@@ -37,8 +37,23 @@ describe('After fetch data', () => {
   });
   test('should be modal on click', async () => {
     const faceImg = await screen.findByTestId('Jesse Pinkman-card');
-
-    // userEvent.click(faceImg);
-    screen.debug(faceImg);
+    userEvent.click(faceImg);
+    const modalOccupation = await screen.findByText(/Funyuns are awesome./i);
+    expect(modalOccupation).toBeInTheDocument();
+  });
+  test('close modal after click', async () => {
+    const faceImg = await screen.findByTestId('Walter White-card');
+    const pagginationTwo = screen.getByRole('button', { name: /2/i });
+    userEvent.click(faceImg);
+    userEvent.click(pagginationTwo);
+    expect(screen.queryByRole('presentation')).toBeNull();
+  });
+  test('should input work', async () => {
+    const input = screen.getByPlaceholderText(/Search for character/i);
+    await act(async () => {
+      userEvent.type(input, 'emilio');
+    });
+    const emilio = await screen.findByText(/Emilio Koyama/i);
+    expect(emilio).toBeInTheDocument();
   });
 });
